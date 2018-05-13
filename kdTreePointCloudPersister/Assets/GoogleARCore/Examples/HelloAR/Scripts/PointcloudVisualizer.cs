@@ -45,49 +45,93 @@ namespace GoogleARCore.HelloAR
 
         private KDTree kd;
 
-        public float threshold = 0.7f;
-        public int frameThersholdForKDTreeBuild = 30;
+        public float threshold = 0.9f;
+        public int frameThersholdForKDTreeBuild = 60;
+        public float thresholdDistance = 0.1f;
 
-        private Vector3 currPoint;
+        private Vector4 currPoint;
 
-        /// <summary>
-        /// Unity start.
-        /// </summary>
+        private List<Vector4> bufferListForPoints = new List<Vector4>();
+
+        List<Vector3> bufferList = new List<Vector3>();
+
+        private bool kdTreeIsCreated = false;
+
+        private int detectedPointsInKdTreeCounter = 0;
+
+        //only for test purposes. delete later!
+        private int totalDetectedPoints = 0;
+
+        /**
+         * Unity Method start is called once at the start of Application runtime
+         * */
         public void Start()
         {
             m_Mesh = GetComponent<MeshFilter>().mesh;
             m_Mesh.Clear();
         }
 
-        /// <summary>
-        /// Unity update.
-        /// </summary>
+        /**
+        * Unity Update is called once per frame
+        * */
         public void Update()
         {
+            //Checks if new PointCloud data (new Points) became available in the current frame
             if (Frame.PointCloud.IsUpdatedThisFrame)
             {
+                /*iterates through all Points inside the current PointCloud and checks if their confidence value is over a certain threshold.
+                  If yes, round all coordinates of the current point on two decimals (Coordinates are given in Meters in ARCore). That means a Point,
+                  which is <= 1cm away from another, will be considered as the same Point. Finally add the current Point. We decided to rather work 
+                  with rounding all three Coordinates instead of the euclidean distance of two vectors because of computational costs and the contain Function
+                  which is used. Contains will acknowledge two vectors only as identical if they are excactly the same. 
+                 */
                 for (int i = 0; i < Frame.PointCloud.PointCount; i++)
                 {
-                    if(Frame.PointCloud.GetPoint(i).w >= 0.7)
+                    if (kdTreeIsCreated 
+                        && Frame.PointCloud.GetPoint(i).w >= threshold
+                        && FindNearestNeighbour(Frame.PointCloud.GetPoint(i)))
                     {
-                        currPoint = Frame.PointCloud.GetPoint(i);
+                        detectedPointsInKdTreeCounter++;
 
-                        currPoint.x = (float)Math.Round((double)currPoint.x, 2);
-                        currPoint.y = (float)Math.Round((double)currPoint.y, 2);
-                        currPoint.z = (float)Math.Round((double)currPoint.z, 2);
-
-                        m_Points[pointCounter] = currPoint;
-
-                        storedPoints.Add(currPoint);
-
-                        pointCounter++;
-                        pointCounterTotal++;
                     }
+                    else
+                    {
+                        totalDetectedPoints++;
+
+                        if (Frame.PointCloud.GetPoint(i).w >= threshold)
+                        {
+                            currPoint = Frame.PointCloud.GetPoint(i);
+
+                            currPoint.x = (float)Math.Round((double)currPoint.x, 2);
+                            currPoint.y = (float)Math.Round((double)currPoint.y, 2);
+                            currPoint.z = (float)Math.Round((double)currPoint.z, 2);
+                            currPoint.w = 0.1f;
+
+                            m_Points[pointCounter] = currPoint;
+
+                            storedPoints.Add(currPoint);
+
+                            /*
+                             * Ignore for now
+                             * */
+                            /*if (!storedPoints.Add(currPoint))
+                            {
+                                bufferListForPoints.Add(currPoint);
+                            }*/
+
+                            pointCounter++;
+                            pointCounterTotal++;
+                        }
+                    }
+                   
                 }
 
-                // Update the mesh indicies array.
-                int[] indices = new int[Frame.PointCloud.PointCount];
-                for (int i = 0; i < Frame.PointCloud.PointCount; i++)
+                /*
+                 This is only for visualisation purposes. All detected Points will bi given to a mesh, which is rendered per frame.
+                 MeshTopology is set to Points, since we only want to show the detected Points
+                 */
+                int[] indices = new int[pointCounter];
+                for (int i = 0; i < pointCounter; i++)
                 {
                     indices[i] = i;
                 }
@@ -96,27 +140,55 @@ namespace GoogleARCore.HelloAR
                 m_Mesh.vertices = m_Points;
                 m_Mesh.SetIndices(indices, MeshTopology.Points, 0);
             }
-
-            if(frameCounter >= frameThersholdForKDTreeBuild && pointCounterTotal > 300)
+            /*
+             * if for at least X frames all detected Points has been collected and we have at least 300 Points detected in this time,
+             * a kd tree with all these Points will be generated. From now on, new detected Points can be compared with the points inside
+             * the kd tree.
+             */
+            if (frameCounter >= frameThersholdForKDTreeBuild && pointCounterTotal > 3000)
             {
-                List<Vector3> bufferList = storedPoints.ToList();
+                bufferList = storedPoints.ToList();
 
                 kd = KDTree.MakeFromPoints(bufferList.ToArray());
 
-                Debug.Log("Anzahl hinzugeüfgte Punkte in KDTree: " + storedPoints.Count + "\n");
+                //Only for test purposes. Delete afterwards!
+                Debug.Log("Anzahl hinzugefügte Punkte in KDTree: " + storedPoints.Count + "\n");
+                Debug.Log("Anzahl effektiv detektierte Punkte: " + totalDetectedPoints + "\n");
                 Debug.Log("Anzahl effektiv detektierte Punkte mit threshold <= " + threshold + ": " + pointCounterTotal);
                 Debug.Log("Anzahl benötigte Frames für Punktesuche: " + frameCounter + "\n");
 
                 frameCounter = 0;
                 pointCounterTotal = 0;
-
+                totalDetectedPoints = 0;
                 storedPoints.Clear();
-            } 
+                kdTreeIsCreated = true;
+            }
         }
         public void LateUpdate()
         {
             frameCounter++;
             pointCounter = 0;
+            detectedPointsInKdTreeCounter = 0;
+        }
+
+        /**
+         * returns the nearest neighbour stored inside the kdTree of the point "pointToCompare".
+         * */
+        bool FindNearestNeighbour(Vector3 pointToCompare)
+        {
+            //Isch das überhoupt einigermasse performant?
+            int min_id = kd.FindNearest(pointToCompare);
+            Vector3 pointV = bufferList[min_id];
+            float min_distance = (pointV - pointToCompare).magnitude;
+            if (min_distance <= thresholdDistance)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }
