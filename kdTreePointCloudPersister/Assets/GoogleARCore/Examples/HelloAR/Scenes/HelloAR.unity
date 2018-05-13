@@ -605,9 +605,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5645b79cc5e4251827ffe171ed4658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.9
+  threshold: 0.6
   frameThersholdForKDTreeBuild: 60
-  thresholdDistance: 0.1
+  thresholdDistance: 0.003
+  pointsAddedToKDTreeThreshold: 3000
+  thresholdDetectedPointMin: 0
 --- !u!33 &1759795988
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -45,9 +45,11 @@ namespace GoogleARCore.HelloAR
 
         private KDTree kd;
 
-        public float threshold = 0.9f;
+        public float threshold = 0.6f;
         public int frameThersholdForKDTreeBuild = 60;
-        public float thresholdDistance = 0.1f;
+        public float thresholdDistance = 0.003f;
+        public int pointsAddedToKDTreeThreshold = 3000;
+        public int thresholdDetectedPointMin = 0;
 
         private Vector4 currPoint;
 
@@ -56,8 +58,9 @@ namespace GoogleARCore.HelloAR
         List<Vector3> bufferList = new List<Vector3>();
 
         private bool kdTreeIsCreated = false;
+        private bool createNewKdTree = true;
 
-        private int detectedPointsInKdTreeCounter = 0;
+        private int detectedPointsInKdTreeCounter = 1;
 
         //only for test purposes. delete later!
         private int totalDetectedPoints = 0;
@@ -87,15 +90,25 @@ namespace GoogleARCore.HelloAR
                  */
                 for (int i = 0; i < Frame.PointCloud.PointCount; i++)
                 {
-                    if (kdTreeIsCreated 
-                        && Frame.PointCloud.GetPoint(i).w >= threshold
-                        && FindNearestNeighbour(Frame.PointCloud.GetPoint(i)))
+                    if (kdTreeIsCreated)
                     {
-                        detectedPointsInKdTreeCounter++;
+                        //Debug.Log("Baum wurde erstellt");
 
+                        bool x = FindNearestNeighbour(Frame.PointCloud.GetPoint(i));
+
+                      if (/*Frame.PointCloud.GetPoint(i).w >= threshold && */ x)
+                        {
+                            detectedPointsInKdTreeCounter++;
+                            /**
+                             * TODO:
+                             * Get Pixelcoordinates with arcore and add a descriptor around it with Opencv. Eventually save
+                             * the Descriptor and the Point in the final PointCloud. 
+                             */
+                        }
                     }
                     else
                     {
+                        //Only for test purposes. delete later!
                         totalDetectedPoints++;
 
                         if (Frame.PointCloud.GetPoint(i).w >= threshold)
@@ -111,19 +124,10 @@ namespace GoogleARCore.HelloAR
 
                             storedPoints.Add(currPoint);
 
-                            /*
-                             * Ignore for now
-                             * */
-                            /*if (!storedPoints.Add(currPoint))
-                            {
-                                bufferListForPoints.Add(currPoint);
-                            }*/
-
                             pointCounter++;
                             pointCounterTotal++;
                         }
                     }
-                   
                 }
 
                 /*
@@ -139,36 +143,54 @@ namespace GoogleARCore.HelloAR
                 m_Mesh.Clear();
                 m_Mesh.vertices = m_Points;
                 m_Mesh.SetIndices(indices, MeshTopology.Points, 0);
+
+                /**
+                * If not enough Points of the current frame are recognized in the KDTree(i.e. when the camera is looking at a new/different
+                * scene), the whole instantiation process will start from the beginning.
+                */
+                if (detectedPointsInKdTreeCounter < thresholdDetectedPointMin && kdTreeIsCreated)
+                {
+                    Debug.Log("Da gieng was schief...");
+                    createNewKdTree = true;
+                    storedPoints.Clear();
+                    pointCounterTotal = 0;
+                    totalDetectedPoints = 0;
+                    frameCounter = 0;
+                    kdTreeIsCreated = false;
+                }
+                /*
+                 * if for at least X frames all detected Points has been collected and we have at least 300 Points detected in this time,
+                 * a kd tree with all these Points will be generated. From now on, new detected Points can be compared with the points inside
+                 * the kd tree.
+                 */
+                if (frameCounter >= frameThersholdForKDTreeBuild
+                    && pointCounterTotal > pointsAddedToKDTreeThreshold
+                    && createNewKdTree)
+                {
+                    bufferList = storedPoints.ToList();
+
+                    kd = KDTree.MakeFromPoints(bufferList.ToArray());
+
+                    //Only for test purposes. Delete afterwards!
+                    Debug.Log("Anzahl hinzugefügte Punkte in KDTree: " + storedPoints.Count + "\n");
+                    Debug.Log("Anzahl effektiv detektierte Punkte: " + totalDetectedPoints + "\n");
+                    Debug.Log("Anzahl effektiv detektierte Punkte mit threshold <= " + threshold + ": " + pointCounterTotal);
+                    Debug.Log("Anzahl benötigte Frames für Punktesuche: " + frameCounter + "\n");
+
+                    frameCounter = 0;
+                    pointCounterTotal = 0;
+                    totalDetectedPoints = 0;
+                    storedPoints.Clear();
+                    kdTreeIsCreated = true;
+                    createNewKdTree = false;
+                }
             }
-            /*
-             * if for at least X frames all detected Points has been collected and we have at least 300 Points detected in this time,
-             * a kd tree with all these Points will be generated. From now on, new detected Points can be compared with the points inside
-             * the kd tree.
-             */
-            if (frameCounter >= frameThersholdForKDTreeBuild && pointCounterTotal > 3000)
-            {
-                bufferList = storedPoints.ToList();
 
-                kd = KDTree.MakeFromPoints(bufferList.ToArray());
-
-                //Only for test purposes. Delete afterwards!
-                Debug.Log("Anzahl hinzugefügte Punkte in KDTree: " + storedPoints.Count + "\n");
-                Debug.Log("Anzahl effektiv detektierte Punkte: " + totalDetectedPoints + "\n");
-                Debug.Log("Anzahl effektiv detektierte Punkte mit threshold <= " + threshold + ": " + pointCounterTotal);
-                Debug.Log("Anzahl benötigte Frames für Punktesuche: " + frameCounter + "\n");
-
-                frameCounter = 0;
-                pointCounterTotal = 0;
-                totalDetectedPoints = 0;
-                storedPoints.Clear();
-                kdTreeIsCreated = true;
-            }
         }
         public void LateUpdate()
         {
             frameCounter++;
             pointCounter = 0;
-            detectedPointsInKdTreeCounter = 0;
         }
 
         /**
@@ -176,19 +198,25 @@ namespace GoogleARCore.HelloAR
          * */
         bool FindNearestNeighbour(Vector3 pointToCompare)
         {
-            //Isch das überhoupt einigermasse performant?
             int min_id = kd.FindNearest(pointToCompare);
             Vector3 pointV = bufferList[min_id];
             float min_distance = (pointV - pointToCompare).magnitude;
             if (min_distance <= thresholdDistance)
             {
+                Debug.Log("Distanz zwischen Vektor " + pointV.x 
+                          + " ," + pointV.y 
+                          + " ," + pointV.z
+                          + " und Vektor " + pointToCompare.x 
+                          + ", " + pointToCompare.y 
+                          + ", " + pointToCompare.z 
+                          + " ist: " + min_distance);
                 return true;
             }
             else
             {
+                //Debug.Log("Distanz zu gross");
                 return false;
             }
-            
         }
     }
 }
