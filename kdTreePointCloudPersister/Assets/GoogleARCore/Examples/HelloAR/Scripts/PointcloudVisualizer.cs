@@ -31,6 +31,7 @@ namespace GoogleARCore.HelloAR
     /// </summary>
     public class PointcloudVisualizer : MonoBehaviour
     {
+        //Variables needed for Point Cloud Generation
         private int frameCounter = 0;
         private int pointCounter = 0;
         private int pointCounterTotal = 0;
@@ -45,11 +46,11 @@ namespace GoogleARCore.HelloAR
 
         private KDTree kd;
 
-        public float threshold = 0.6f;
+        public float threshold = 0.8f;
         public int frameThersholdForKDTreeBuild = 60;
         public float thresholdDistance = 0.003f;
         public int pointsAddedToKDTreeThreshold = 3000;
-        public int thresholdDetectedPointMin = 0;
+        public int thresholdDetectedPointMin = 1;
 
         private Vector4 currPoint;
 
@@ -60,11 +61,20 @@ namespace GoogleARCore.HelloAR
         private bool kdTreeIsCreated = false;
         private bool createNewKdTree = true;
 
-        private int detectedPointsInKdTreeCounter = 1;
+        private int detectedPointsInKdTreeCounter = 0;
+        private int detectedPointsInKdTreeCounterFrameCounter = 0;
 
         //only for test purposes. delete later!
         private int totalDetectedPoints = 0;
+        private int distanceToBigCounter = 0;
+        private int distanceOkCounter = 0;
 
+        //Variables needed for Pixel Coordinates Calculation
+        public Camera mainCamera;
+        //private ARCoreBackgroundRenderer backgroundRenderer;
+        //public Material backGroundMaterial;
+        private Vector4 cameraCoordsOfPoint;
+        public Transform prefab;
         /**
          * Unity Method start is called once at the start of Application runtime
          * */
@@ -73,6 +83,19 @@ namespace GoogleARCore.HelloAR
             m_Mesh = GetComponent<MeshFilter>().mesh;
             m_Mesh.Clear();
         }
+
+        /*public void OnEnable()
+        {
+            if(backgroundRenderer == null)
+            {
+                backgroundRenderer = new ARCoreBackgroundRenderer();
+            }
+
+            if(backGroundMaterial == null)
+            {
+                Debug.Log("Kein Background Material zur Kamera hinzugefügt.");
+            }
+        }*/
 
         /**
         * Unity Update is called once per frame
@@ -90,13 +113,13 @@ namespace GoogleARCore.HelloAR
                  */
                 for (int i = 0; i < Frame.PointCloud.PointCount; i++)
                 {
-                    if (kdTreeIsCreated)
+                    if (Frame.PointCloud.GetPoint(i).w >= threshold &&  kdTreeIsCreated)
                     {
                         //Debug.Log("Baum wurde erstellt");
 
-                        bool x = FindNearestNeighbour(Frame.PointCloud.GetPoint(i));
+                      bool neighbourPoint = FindNearestNeighbour(Frame.PointCloud.GetPoint(i));
 
-                      if (/*Frame.PointCloud.GetPoint(i).w >= threshold && */ x)
+                      if (neighbourPoint)
                         {
                             detectedPointsInKdTreeCounter++;
                             /**
@@ -104,6 +127,16 @@ namespace GoogleARCore.HelloAR
                              * Get Pixelcoordinates with arcore and add a descriptor around it with Opencv. Eventually save
                              * the Descriptor and the Point in the final PointCloud. 
                              */
+
+                            cameraCoordsOfPoint = mainCamera.WorldToScreenPoint(Frame.PointCloud.GetPoint(i));
+
+                            Debug.Log(("Pixelkoordinaten von Punkt: " + Frame.PointCloud.GetPoint(i)
+                                      + "sind: " + cameraCoordsOfPoint.x + ", " + cameraCoordsOfPoint.y 
+                                      + ", " + cameraCoordsOfPoint.z));
+
+
+                            cameraCoordsOfPoint = mainCamera.ScreenToWorldPoint(cameraCoordsOfPoint);
+                            Instantiate(prefab, cameraCoordsOfPoint, Quaternion.identity);
                         }
                     }
                     else
@@ -148,9 +181,9 @@ namespace GoogleARCore.HelloAR
                 * If not enough Points of the current frame are recognized in the KDTree(i.e. when the camera is looking at a new/different
                 * scene), the whole instantiation process will start from the beginning.
                 */
-                if (detectedPointsInKdTreeCounter < thresholdDetectedPointMin && kdTreeIsCreated)
+                if (detectedPointsInKdTreeCounter < thresholdDetectedPointMin && kdTreeIsCreated && detectedPointsInKdTreeCounterFrameCounter > 200)
                 {
-                    Debug.Log("Da gieng was schief...");
+                    //Debug.Log(detectedPointsInKdTreeCounter);
                     createNewKdTree = true;
                     storedPoints.Clear();
                     pointCounterTotal = 0;
@@ -172,11 +205,11 @@ namespace GoogleARCore.HelloAR
                     kd = KDTree.MakeFromPoints(bufferList.ToArray());
 
                     //Only for test purposes. Delete afterwards!
-                    Debug.Log("Anzahl hinzugefügte Punkte in KDTree: " + storedPoints.Count + "\n");
+                    /*Debug.Log("Anzahl hinzugefügte Punkte in KDTree: " + storedPoints.Count + "\n");
                     Debug.Log("Anzahl effektiv detektierte Punkte: " + totalDetectedPoints + "\n");
                     Debug.Log("Anzahl effektiv detektierte Punkte mit threshold <= " + threshold + ": " + pointCounterTotal);
                     Debug.Log("Anzahl benötigte Frames für Punktesuche: " + frameCounter + "\n");
-
+                    */
                     frameCounter = 0;
                     pointCounterTotal = 0;
                     totalDetectedPoints = 0;
@@ -185,12 +218,25 @@ namespace GoogleARCore.HelloAR
                     createNewKdTree = false;
                 }
             }
-
         }
         public void LateUpdate()
         {
             frameCounter++;
             pointCounter = 0;
+            if(detectedPointsInKdTreeCounterFrameCounter > 300)
+            {
+                /*Debug.Log("Anzahl wiedererkannte Punkte in k-d Baum: " + detectedPointsInKdTreeCounter);
+                detectedPointsInKdTreeCounter = 0;
+                */
+                Debug.Log("Anzahl Punkte, welche in k-d-Baum enthalten sind: " + distanceOkCounter);
+                Debug.Log("Anzahl Punkte, welche nicht in k-d-Baum enthalten sind: " + distanceToBigCounter);
+                detectedPointsInKdTreeCounterFrameCounter = 0;
+                distanceOkCounter = 0;
+                distanceToBigCounter = 0;
+                detectedPointsInKdTreeCounter = 0;
+            }
+
+            detectedPointsInKdTreeCounterFrameCounter++;
         }
 
         /**
@@ -203,18 +249,20 @@ namespace GoogleARCore.HelloAR
             float min_distance = (pointV - pointToCompare).magnitude;
             if (min_distance <= thresholdDistance)
             {
-                Debug.Log("Distanz zwischen Vektor " + pointV.x 
+                /*Debug.Log("Distanz zwischen Vektor " + pointV.x 
                           + " ," + pointV.y 
                           + " ," + pointV.z
                           + " und Vektor " + pointToCompare.x 
                           + ", " + pointToCompare.y 
                           + ", " + pointToCompare.z 
                           + " ist: " + min_distance);
+                          */
+                distanceOkCounter++;
                 return true;
             }
             else
             {
-                //Debug.Log("Distanz zu gross");
+                distanceToBigCounter++;
                 return false;
             }
         }

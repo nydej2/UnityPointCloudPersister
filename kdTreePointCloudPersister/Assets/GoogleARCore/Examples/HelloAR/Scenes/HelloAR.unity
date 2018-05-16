@@ -605,11 +605,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5645b79cc5e4251827ffe171ed4658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.6
+  threshold: 0.8
   frameThersholdForKDTreeBuild: 60
-  thresholdDistance: 0.003
+  thresholdDistance: 0.017
   pointsAddedToKDTreeThreshold: 3000
-  thresholdDetectedPointMin: 0
+  thresholdDetectedPointMin: 1
+  mainCamera: {fileID: 896679035}
+  prefab: {fileID: 4944253015459606, guid: 34298e3abb9ab2248a8736c390347d1c, type: 2}
 --- !u!33 &1759795988
 MeshFilter:
   m_ObjectHideFlags: 0
