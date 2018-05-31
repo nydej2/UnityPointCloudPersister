@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\libs\unity-classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2d302418aa3482b8db770278260340aed47dd37a">
+        <dex dex="C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\build\intermediates\pre-dexed\release\unity-classes_cc3c6f32c68e307a6ec7a81705c8ff68c31a6c75.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,197 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:2:1-27:12
+	package
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:2:70-113
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:2:161-186
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:2:114-160
+	android:versionCode
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:2:187-210
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:2:11-69
+	android:installLocation
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:2:211-251
+supports-screens
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:3:3-163
+	android:largeScreens
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:3:78-105
+	android:smallScreens
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:3:21-48
+	android:normalScreens
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:3:49-77
+	android:xlargeScreens
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:3:106-134
+	android:anyDensity
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:3:135-160
+application
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:4:3-19:17
+MERGED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:30:5-44:19
+MERGED from [:cloud_anchor_manifest:] C:\Users\Jonas\.android\build-cache\aa8029597d68099dde743617904de257b8b90e14\output\AndroidManifest.xml:7:5-11:19
+MERGED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:7:5-9:19
+	android:label
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:4:92-124
+	android:icon
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:4:58-91
+	android:banner
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:4:147-184
+	android:theme
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:4:16-57
+	android:isGame
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:4:125-146
+activity#com.unity3d.player.UnityPlayerActivity
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:5:5-12:16
+	android:screenOrientation
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:5:102-140
+	android:label
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:5:69-101
+	android:launchMode
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:5:141-172
+	android:configChanges
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:5:173-354
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:5:15-68
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER+android.intent.category.LEANBACK_LAUNCHER
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:6:7-10:23
+action#android.intent.action.MAIN
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:7:9-61
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:7:17-58
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:8:9-69
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:8:19-66
+category#android.intent.category.LEANBACK_LAUNCHER
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:9:9-78
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:9:19-75
+meta-data#unityplayer.UnityActivity
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:11:7-82
+	android:value
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:11:59-79
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:11:18-58
+meta-data#unityplayer.SkipPermissionsDialog
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:13:5-88
+	android:value
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:13:65-85
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:13:16-64
+meta-data#unity.build-id
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:14:5-101
+	android:value
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:14:46-98
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:14:16-45
+meta-data#unity.splash-mode
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:15:5-69
+	android:value
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:15:49-66
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:15:16-48
+meta-data#unity.splash-enable
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:16:5-74
+	android:value
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:16:51-71
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:16:16-50
+meta-data#android.max_aspect
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:17:5-72
+	android:value
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:17:50-69
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:17:16-49
+meta-data#unity.tango-enable
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:18:5-73
+	android:value
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:18:50-70
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:18:16-49
+uses-sdk
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:20:3-72
+MERGED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:26:5-28:41
+MERGED from [:cloud_anchor_manifest:] C:\Users\Jonas\.android\build-cache\aa8029597d68099dde743617904de257b8b90e14\output\AndroidManifest.xml:6:5-43
+MERGED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:6:5-43
+MERGED from [:unityandroidpermissions:] C:\Users\Jonas\.android\build-cache\3864a2d73280645b2e82212bc77a90dd41f7aad0\output\AndroidManifest.xml:11:5-13:41
+MERGED from [:unitygar:] C:\Users\Jonas\.android\build-cache\e8c688e7c249266fd0147ea0b37bdb606ab748ef\output\AndroidManifest.xml:7:5-9:41
+	android:targetSdkVersion
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:20:40-69
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:20:13-39
+uses-feature#0x00020000
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:21:3-52
+	android:glEsVersion
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:21:17-49
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:22:3-63
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:22:20-60
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:23:3-65
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:23:20-62
+uses-feature#android.hardware.touchscreen
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:24:3-88
+	android:required
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:24:61-85
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:24:17-60
+uses-feature#android.hardware.touchscreen.multitouch
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:25:3-99
+	android:required
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:25:72-96
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:25:17-71
+uses-feature#android.hardware.touchscreen.multitouch.distinct
+ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:26:3-108
+	android:required
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:26:81-105
+	android:name
+		ADDED from C:\Users\Jonas\Desktop\BsC_informatik_S6\BachelorThesis\UnityProjects2\HelloCloudAnchors\Temp\gradleOut\src\main\AndroidManifest.xml:26:17-80
+activity#com.google.ar.core.InstallActivity
+ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:33:9-39:80
+	android:excludeFromRecents
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:36:13-46
+	android:launchMode
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:38:13-43
+	android:exported
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:37:13-37
+	android:configChanges
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:35:13-74
+	android:theme
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:39:13-77
+	android:name
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:34:13-62
+meta-data#com.google.ar.core.min_apk_version
+ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:41:9-43:41
+	android:value
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:43:13-38
+	android:name
+		ADDED from [:arcore_client:] C:\Users\Jonas\.android\build-cache\09896d6c987accbb8ef1e746fcd0c6e8cc658321\output\AndroidManifest.xml:42:13-62
+meta-data#com.google.android.ar.API_KEY
+ADDED from [:cloud_anchor_manifest:] C:\Users\Jonas\.android\build-cache\aa8029597d68099dde743617904de257b8b90e14\output\AndroidManifest.xml:8:9-10:70
+	android:value
+		ADDED from [:cloud_anchor_manifest:] C:\Users\Jonas\.android\build-cache\aa8029597d68099dde743617904de257b8b90e14\output\AndroidManifest.xml:10:13-68
+	android:name
+		ADDED from [:cloud_anchor_manifest:] C:\Users\Jonas\.android\build-cache\aa8029597d68099dde743617904de257b8b90e14\output\AndroidManifest.xml:9:13-57
+meta-data#com.google.ar.core
+ADDED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:8:9-81
+	android:value
+		ADDED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:8:54-78
+	android:name
+		ADDED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:8:20-53
+uses-feature#android.hardware.camera.ar
+ADDED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:10:5-86
+	android:required
+		ADDED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:10:61-84
+	android:name
+		ADDED from [:google_ar_required:] C:\Users\Jonas\.android\build-cache\fb5d7301c653f3859fea459657fbcdf846f52393\output\AndroidManifest.xml:10:19-60
